@@ -271,7 +271,8 @@ forever(function () {
     	
     }
     if (true) {
-        if (box.tileKindAt(TileDirection.Left, myTiles.tile2)) {
+        if (box.tileKindAt(TileDirection.Center, myTiles.tile2)) {
+            pause(350)
             box.setVelocity(0, 25)
         }
     } else if (objectWeight == 0.2) {
