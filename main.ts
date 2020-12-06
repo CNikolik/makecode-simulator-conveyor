@@ -266,7 +266,7 @@ forever(function () {
             box.vy += 25
         }
     } else if (objectWeight == 0.2) {
-        if (upOrientation) {
+        if (sideOrientation) {
             console.log("Goat - Up")
             if (box.x == 10) {
                 box.vx += 0
