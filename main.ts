@@ -261,7 +261,7 @@ resetBox()
 forever(function () {
     if (objectWeight == 1) {
         console.log("Cheerio")
-        if (box.x == 6) {
+        if (box.tileKindAt(TileDirection.Bottom, sprites.vehicle.roadVertical)) {
             box.vx += 0
             box.vy += 25
         }
