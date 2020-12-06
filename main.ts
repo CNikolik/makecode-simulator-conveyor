@@ -261,6 +261,7 @@ tiles.placeOnTile(sideOrientation, tiles.getTileLocation(10, 9))
 resetBox()
 forever(function () {
     if (box.tileKindAt(TileDirection.Center, sprites.dungeon.buttonPink)) {
+        pause(350)
         if (showntext1 == 0) {
             game.showLongText("Weight of box: " + convertToText(objectWeight), DialogLayout.Full)
             game.showLongText("Material: " + convertToText(objectMaterial), DialogLayout.Full)
@@ -268,9 +269,9 @@ forever(function () {
         }
     }
     if (box.tileKindAt(TileDirection.Center, sprites.dungeon.buttonTeal)) {
-    	
+        pause(350)
     }
-    if (true) {
+    if (objectWeight == 1 && objectMaterial == "Rubber") {
         if (box.tileKindAt(TileDirection.Center, myTiles.tile2)) {
             pause(350)
             box.setVelocity(0, 25)
@@ -285,5 +286,10 @@ forever(function () {
         if (box.x == 4) {
             box.setVelocity(0, 25)
         }
+    }
+    if (box.tileKindAt(TileDirection.Center, sprites.dungeon.chestClosed)) {
+        box.setVelocity(0, 0)
+        showntext1 = 0
+        resetBox()
     }
 })
