@@ -259,5 +259,23 @@ let sideOrientation = sprites.create(img`
 tiles.placeOnTile(sideOrientation, tiles.getTileLocation(10, 9))
 resetBox()
 forever(function () {
-	
+    if (objectWeight == 1) {
+        if (box.y == 6) {
+            box.vx += 0
+            box.vy += 25
+        }
+    } else if (objectWeight == 0.2) {
+        if (upOrientation) {
+            if (box.y == 10) {
+                box.vx += 0
+                box.vy += 25
+            }
+        }
+    } else {
+        if (box.y == 4) {
+            box.vx += 0
+            box.vy += 25
+        }
+    }
+    pause(5000)
 })
