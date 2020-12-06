@@ -55,7 +55,9 @@ function resetBox () {
     pause(200)
     box.setVelocity(25, 0)
 }
-// Create and place game map and objects
+/**
+ * Create and place game map and objects
+ */
 let passed_intersections = 0
 let showntext1 = 0
 let orientation = 0
@@ -262,6 +264,7 @@ tiles.placeOnTile(sideOrientation, tiles.getTileLocation(10, 9))
 resetBox()
 forever(function () {
     if (box.tileKindAt(TileDirection.Center, sprites.dungeon.buttonPink)) {
+        pinkButton.say("     Scanning...", 500)
         pause(350)
         if (showntext1 == 0) {
             game.showLongText("Weight of box: " + convertToText(objectWeight), DialogLayout.Full)
@@ -270,6 +273,7 @@ forever(function () {
         }
     }
     if (box.tileKindAt(TileDirection.Center, sprites.dungeon.buttonTeal)) {
+        blueButton.say("     Scanning...", 500)
         pause(350)
     }
     if (box.tileKindAt(TileDirection.Center, myTiles.tile2)) {
