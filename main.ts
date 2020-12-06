@@ -56,6 +56,7 @@ function resetBox () {
     box.setVelocity(25, 0)
 }
 // Create and place game map and objects
+let passed_intersections = 0
 let showntext1 = 0
 let orientation = 0
 let objectWeight = 0
@@ -271,25 +272,30 @@ forever(function () {
     if (box.tileKindAt(TileDirection.Center, sprites.dungeon.buttonTeal)) {
         pause(350)
     }
-    if (objectWeight == 1 && objectMaterial == "Rubber") {
-        if (box.tileKindAt(TileDirection.Center, myTiles.tile2)) {
+    if (box.tileKindAt(TileDirection.Center, myTiles.tile2)) {
+        if (objectWeight == 1 && objectMaterial == "Rubber" && passed_intersections == 1) {
+            pause(330)
+            box.setVelocity(0, 25)
+        } else if (objectWeight == 0.2 && objectMaterial == "Porcelain" && passed_intersections == 2) {
+            if (sideOrientation) {
+                if (box.x == 10) {
+                    box.setVelocity(0, 25)
+                }
+            }
+        } else if (objectMaterial == "Unknown" && passed_intersections == 0) {
             pause(350)
             box.setVelocity(0, 25)
+        } else {
+        	
         }
-    } else if (objectWeight == 0.2) {
-        if (sideOrientation) {
-            if (box.x == 10) {
-                box.setVelocity(0, 25)
-            }
-        }
-    } else {
-        if (box.x == 4) {
-            box.setVelocity(0, 25)
-        }
+        passed_intersections += 1
+        pause(1000)
     }
     if (box.tileKindAt(TileDirection.Center, sprites.dungeon.chestClosed)) {
         box.setVelocity(0, 0)
         showntext1 = 0
+        passed_intersections = 0
+        box.say(convertToText(objectMaterial), 400)
         resetBox()
     }
 })
