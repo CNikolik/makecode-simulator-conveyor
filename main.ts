@@ -260,19 +260,19 @@ tiles.placeOnTile(sideOrientation, tiles.getTileLocation(10, 9))
 resetBox()
 forever(function () {
     if (objectWeight == 1) {
-        if (box.y == 6) {
+        if (box.x == 6) {
             box.vx += 0
             box.vy += 25
         }
     } else if (objectWeight == 0.2) {
         if (upOrientation) {
-            if (box.y == 10) {
+            if (box.x == 10) {
                 box.vx += 0
                 box.vy += 25
             }
         }
     } else {
-        if (box.y == 4) {
+        if (box.x == 4) {
             box.vx += 0
             box.vy += 25
         }
