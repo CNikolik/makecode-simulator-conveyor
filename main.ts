@@ -262,23 +262,20 @@ forever(function () {
     if (objectWeight == 1) {
         console.log("Cheerio")
         if (box.tileKindAt(TileDirection.Bottom, sprites.vehicle.roadVertical)) {
-            box.vx += 0
-            box.vy += 25
+            box.setVelocity(0, 25)
         }
     } else if (objectWeight == 0.2) {
         if (sideOrientation) {
             console.log("Goat - Up")
             if (box.x == 10) {
-                box.vx += 0
-                box.vy += 25
+                box.setVelocity(0, 25)
             }
         }
         console.log("Goat - Side")
     } else {
         console.log("Unknown")
         if (box.x == 4) {
-            box.vx += 0
-            box.vy += 25
+            box.setVelocity(0, 25)
         }
     }
 })
