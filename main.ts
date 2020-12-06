@@ -273,6 +273,7 @@ forever(function () {
                 box.vy += 25
             }
         }
+        console.log("Goat - Side")
     } else {
         console.log("Unknown")
         if (box.x == 4) {
@@ -280,5 +281,4 @@ forever(function () {
             box.vy += 25
         }
     }
-    console.log("")
 })
