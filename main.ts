@@ -56,6 +56,7 @@ function resetBox () {
     box.setVelocity(25, 0)
 }
 // Create and place game map and objects
+let showntext1 = 0
 let orientation = 0
 let objectWeight = 0
 let objectMaterial = ""
@@ -259,21 +260,27 @@ let sideOrientation = sprites.create(img`
 tiles.placeOnTile(sideOrientation, tiles.getTileLocation(10, 9))
 resetBox()
 forever(function () {
-    if (objectWeight == 1) {
-        console.log("Cheerio")
+    if (box.tileKindAt(TileDirection.Center, sprites.dungeon.buttonPink)) {
+        if (showntext1 == 0) {
+            game.showLongText("Weight of box: " + convertToText(objectWeight), DialogLayout.Full)
+            game.showLongText("Material: " + convertToText(objectMaterial), DialogLayout.Full)
+            showntext1 = 1
+        }
+    }
+    if (box.tileKindAt(TileDirection.Center, sprites.dungeon.buttonTeal)) {
+    	
+    }
+    if (true) {
         if (box.tileKindAt(TileDirection.Left, myTiles.tile2)) {
             box.setVelocity(0, 25)
         }
     } else if (objectWeight == 0.2) {
         if (sideOrientation) {
-            console.log("Goat - Up")
             if (box.x == 10) {
                 box.setVelocity(0, 25)
             }
         }
-        console.log("Goat - Side")
     } else {
-        console.log("Unknown")
         if (box.x == 4) {
             box.setVelocity(0, 25)
         }
