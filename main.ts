@@ -263,6 +263,7 @@ let sideOrientation = sprites.create(img`
 tiles.placeOnTile(sideOrientation, tiles.getTileLocation(10, 9))
 resetBox()
 forever(function () {
+    scene.cameraFollowSprite(box)
     if (box.tileKindAt(TileDirection.Center, sprites.dungeon.buttonPink)) {
         pinkButton.say("  Scanning...", 500)
         pause(350)
@@ -293,8 +294,6 @@ forever(function () {
         } else if (objectMaterial == "Unknown" && passed_intersections == 0) {
             pause(330)
             box.setVelocity(0, 25)
-        } else {
-        	
         }
         passed_intersections += 1
         pause(1000)
