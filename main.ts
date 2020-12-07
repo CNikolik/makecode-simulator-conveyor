@@ -59,7 +59,7 @@ function resetBox () {
  * Create and place game map and objects
  */
 let passed_intersections = 0
-let showntext1 = 0
+let showntext = 0
 let orientation = 0
 let objectWeight = 0
 let objectMaterial = ""
@@ -264,30 +264,34 @@ tiles.placeOnTile(sideOrientation, tiles.getTileLocation(10, 9))
 resetBox()
 forever(function () {
     if (box.tileKindAt(TileDirection.Center, sprites.dungeon.buttonPink)) {
-        pinkButton.say("     Scanning...", 500)
+        pinkButton.say("  Scanning...", 500)
         pause(350)
-        if (showntext1 == 0) {
-            game.showLongText("Weight of box: " + convertToText(objectWeight), DialogLayout.Full)
-            game.showLongText("Material: " + convertToText(objectMaterial), DialogLayout.Full)
-            showntext1 = 1
+        if (showntext == 0) {
+            game.showLongText("Weight of box: " + convertToText(objectWeight) + ("        Material: " + convertToText(objectMaterial)), DialogLayout.Full)
+            showntext = 1
         }
     }
     if (box.tileKindAt(TileDirection.Center, sprites.dungeon.buttonTeal)) {
-        blueButton.say("     Scanning...", 500)
+        blueButton.say("  Scanning...", 500)
         pause(350)
+        if (showntext == 1) {
+            if (orientation == 0) {
+                game.showLongText("Orientation: Up", DialogLayout.Full)
+            } else {
+                game.showLongText("Orientation: Sideways", DialogLayout.Full)
+            }
+            showntext = 2
+        }
     }
     if (box.tileKindAt(TileDirection.Center, myTiles.tile2)) {
         if (objectWeight == 1 && objectMaterial == "Rubber" && passed_intersections == 1) {
             pause(330)
             box.setVelocity(0, 25)
-        } else if (objectWeight == 0.2 && objectMaterial == "Porcelain" && passed_intersections == 2) {
-            if (sideOrientation) {
-                if (box.x == 10) {
-                    box.setVelocity(0, 25)
-                }
-            }
+        } else if (objectWeight == 0.2 && orientation == 0 && passed_intersections == 2) {
+            pause(330)
+            box.setVelocity(0, 25)
         } else if (objectMaterial == "Unknown" && passed_intersections == 0) {
-            pause(350)
+            pause(330)
             box.setVelocity(0, 25)
         } else {
         	
@@ -296,10 +300,24 @@ forever(function () {
         pause(1000)
     }
     if (box.tileKindAt(TileDirection.Center, sprites.dungeon.chestClosed)) {
+        pause(300)
         box.setVelocity(0, 0)
-        showntext1 = 0
+        showntext = 0
         passed_intersections = 0
-        box.say(convertToText(objectMaterial), 400)
+        if (objectMaterial == "Rubber") {
+            box.say("Cheerios", 400)
+        } else if (objectMaterial == "Porcelain") {
+            box.say("Goat Figurine", 400)
+            pause(400)
+            if (orientation == 0) {
+                box.say("Up", 400)
+            } else {
+                box.say("Sideways", 400)
+            }
+        } else {
+            box.say("Unknown Object", 400)
+        }
+        pause(400)
         resetBox()
     }
 })
